@@ -23,7 +23,7 @@ function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("${BASE_URL}/orders");
+      const res = await axios.get(`${BASE_URL}/orders`);
       const fetchedOrders = res.data; // Keep backend DESC order
       setOrders(fetchedOrders);
       for (const order of fetchedOrders) {
