@@ -15,10 +15,10 @@ function Invoices() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get("${BASE_URL}/customers").then(res => setCustomers(res.data));
-    axios.get("${BASE_URL}/vendors").then(res => setVendors(res.data));
-    axios.get("${BASE_URL}/invoices/sales").then(res => setSaleInvoices(res.data));
-    axios.get("${BASE_URL}/invoices/expenses").then(res => setExpenseInvoices(res.data));
+    axios.get(`${BASE_URL}/customers`).then(res => setCustomers(res.data));
+    axios.get(`${BASE_URL}/vendors`).then(res => setVendors(res.data));
+    axios.get(`${BASE_URL}/invoices/sales`).then(res => setSaleInvoices(res.data));
+    axios.get(`${BASE_URL}/invoices/expenses`).then(res => setExpenseInvoices(res.data));
   }, []);
 
   const handleSaleChange = (e) => setSaleForm({ ...saleForm, [e.target.name]: e.target.value });
@@ -27,12 +27,12 @@ function Invoices() {
   const handleSaleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...saleForm, customer_id: parseInt(saleForm.customer_id), amount: parseFloat(saleForm.amount) };
-    axios.post("${BASE_URL}/invoices/sales", payload)
+    axios.post(`${BASE_URL}/invoices/sales`, payload)
       .then(() => {
         setMessage("✅ Sale invoice added!");
         setSaleForm({ customer_id: "", invoice_number: "", amount: "", description: "", due_date: "" });
         setShowForm(false);
-        axios.get("${BASE_URL}/invoices/sales").then(res => setSaleInvoices(res.data));
+        axios.get(`${BASE_URL}/invoices/sales`).then(res => setSaleInvoices(res.data));
       })
       .catch(() => setMessage("❌ Error adding sale invoice"));
   };
@@ -40,12 +40,12 @@ function Invoices() {
   const handleExpenseSubmit = (e) => {
     e.preventDefault();
     const payload = { ...expenseForm, vendor_id: parseInt(expenseForm.vendor_id), amount: parseFloat(expenseForm.amount) };
-    axios.post("${BASE_URL}/invoices/expenses", payload)
+    axios.post(`${BASE_URL}/invoices/expenses`, payload)
       .then(() => {
         setMessage("✅ Expense invoice added!");
         setExpenseForm({ vendor_id: "", invoice_number: "", amount: "", description: "", due_date: "" });
         setShowForm(false);
-        axios.get("${BASE_URL}/invoices/expenses").then(res => setExpenseInvoices(res.data));
+        axios.get(`${BASE_URL}/invoices/expenses`).then(res => setExpenseInvoices(res.data));
       })
       .catch(() => setMessage("❌ Error adding expense invoice"));
   };

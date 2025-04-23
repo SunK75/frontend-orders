@@ -20,7 +20,7 @@ function Vendors() {
   }, []);
 
   const fetchVendors = () => {
-    axios.get("${BASE_URL}/vendors/")
+    axios.get(`${BASE_URL}/vendors/`)
       .then((res) => setVendors(res.data))
       .catch((err) => console.error(err));
   };
@@ -40,7 +40,7 @@ function Vendors() {
         })
         .catch(() => setMessage("❌ Error updating vendor."));
     } else {
-      axios.post("${BASE_URL}/vendors/", form)
+      axios.post(`${BASE_URL}/vendors/`, form)
         .then(() => {
           setMessage("✅ Vendor added!");
           resetForm();

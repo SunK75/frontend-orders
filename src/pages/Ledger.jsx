@@ -17,8 +17,8 @@ function Ledger() {
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
 
   useEffect(() => {
-    axios.get("${BASE_URL}/customers/").then(res => setCustomers(res.data));
-    axios.get("${BASE_URL}/vendors/").then(res => setVendors(res.data));
+    axios.get(`${BASE_URL}/customers/`).then(res => setCustomers(res.data));
+    axios.get(`${BASE_URL}/vendors/`).then(res => setVendors(res.data));
   }, []);
 
   const handleSelect = (id) => {

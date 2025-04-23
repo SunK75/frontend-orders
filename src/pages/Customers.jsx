@@ -20,7 +20,7 @@ function Customers() {
   }, []);
 
   const fetchCustomers = () => {
-    axios.get("${BASE_URL}/customers")
+    axios.get(`${BASE_URL}/customers`)
       .then((res) => setCustomers(res.data))
       .catch((err) => console.error(err));
   };
@@ -41,7 +41,7 @@ function Customers() {
         })
         .catch(() => setMessage("❌ Error updating customer."));
     } else {
-      axios.post("${BASE_URL}/customers", form)
+      axios.post(`${BASE_URL}/customers`, form)
         .then(() => {
           setMessage("✅ Customer added!");
           setForm({ id: null, name: "", contact: "", gst_number: "", address: "" });

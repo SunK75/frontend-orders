@@ -23,8 +23,8 @@ function EditOrder() {
       try {
         const [orderRes, customersRes, vendorsRes, paymentsRes, docsRes] = await Promise.all([
           axios.get(`${BASE_URL}/orders/${id}`),
-          axios.get("${BASE_URL}/customers"),
-          axios.get("${BASE_URL}/vendors"),
+          axios.get(`${BASE_URL}/customers`),
+          axios.get(`${BASE_URL}/vendors`),
           axios.get(`${BASE_URL}/payments/by-order/${id}`),
           axios.get(`${BASE_URL}/orders/${id}/documents`).catch(() => ({ data: [] }))
         ]);

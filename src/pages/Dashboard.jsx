@@ -6,7 +6,7 @@ function Dashboard() {
   const [summary, setSummary] = useState(null);
 
   useEffect(() => {
-    axios.get("${BASE_URL}/dashboard/summary").then((res) => setSummary(res.data));
+    axios.get(`${BASE_URL}/dashboard/summary`).then((res) => setSummary(res.data));
   }, []);
 
   return (

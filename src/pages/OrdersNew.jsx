@@ -55,15 +55,15 @@ export default function OrderFormPage() {
   ];
 
   useEffect(() => {
-    axios.get("${BASE_URL}/orders/latest-id").then(res => {
+    axios.get(`${BASE_URL}/orders/latest-id`).then(res => {
       const latest = res.data.latest_id || 100;
       const nextOptions = Array.from({ length: 5 }, (_, i) => `#${latest + i + 1}`);
       setOrderNumberOptions(nextOptions);
       if (!editingOrder) setSelectedOrderNumber(nextOptions[0]);
     });
 
-    axios.get("${BASE_URL}/customers").then(res => setCustomers(res.data));
-    axios.get("${BASE_URL}/vendors").then(res => setVendors(res.data));
+    axios.get(`${BASE_URL}/customers`).then(res => setCustomers(res.data));
+    axios.get(`${BASE_URL}/vendors`).then(res => setVendors(res.data));
   }, []);
 
   const uploadDocuments = async (orderId) => {
@@ -76,7 +76,7 @@ export default function OrderFormPage() {
     }
 
     try {
-      await axios.post("${BASE_URL}/documents/upload", formData, {
+      await axios.post(`${BASE_URL}/documents/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("✅ All documents uploaded");
@@ -89,7 +89,7 @@ export default function OrderFormPage() {
     try {
       for (const p of customerPayments) {
         if (p.amount && p.date) {
-          await axios.post("${BASE_URL}/payments/", {
+          await axios.post(`${BASE_URL}/payments/`, {
             order_id: orderId,
             type: "customer",
             amount: parseFloat(p.amount),
@@ -100,7 +100,7 @@ export default function OrderFormPage() {
   
       for (const p of vendorPayments) {
         if (p.amount && p.date) {
-          await axios.post("${BASE_URL}/payments/", {
+          await axios.post(`${BASE_URL}/payments/`, {
             order_id: orderId,
             type: "vendor",
             amount: parseFloat(p.amount),
@@ -143,7 +143,7 @@ export default function OrderFormPage() {
         await axios.patch(`${BASE_URL}/orders/${editingOrder.id}`, payload);
         setMessage("✅ Order updated successfully");
       } else {
-        const response = await axios.post("${BASE_URL}/orders/", payload);
+        const response = await axios.post(`${BASE_URL}/orders/`, payload);
         const orderId = response.data.id;
         await uploadDocuments(orderId);
         await uploadPayments(orderId);

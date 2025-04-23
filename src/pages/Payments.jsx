@@ -16,10 +16,10 @@ function Payments() {
   const [made, setMade] = useState({ vendor_id: "", amount: "", payment_date: "", method: "", invoice_id: "" });
 
   useEffect(() => {
-    axios.get("${BASE_URL}/customers").then(res => setCustomers(res.data));
-    axios.get("${BASE_URL}/vendors").then(res => setVendors(res.data));
-    axios.get("${BASE_URL}/payments/received").then(res => setReceivedPayments(res.data));
-    axios.get("${BASE_URL}/payments/made").then(res => setMadePayments(res.data));
+    axios.get(`${BASE_URL}/customers`).then(res => setCustomers(res.data));
+    axios.get(`${BASE_URL}/vendors`).then(res => setVendors(res.data));
+    axios.get(`${BASE_URL}/payments/received`).then(res => setReceivedPayments(res.data));
+    axios.get(`${BASE_URL}/payments/made`).then(res => setMadePayments(res.data));
   }, []);
 
   const handleChange = (e, type) => {
