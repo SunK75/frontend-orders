@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
 
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split("-");

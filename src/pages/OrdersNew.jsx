@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
 
 export default function OrderFormPage() {
   const navigate = useNavigate();

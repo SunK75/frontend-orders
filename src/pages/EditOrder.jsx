@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
 
 function EditOrder() {
   const { id } = useParams();

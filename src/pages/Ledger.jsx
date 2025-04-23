@@ -4,7 +4,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
 
 function Ledger() {
   const [type, setType] = useState("customer");

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
 
 function Vendors() {
   const [vendors, setVendors] = useState([]);
